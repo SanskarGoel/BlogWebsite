@@ -21,7 +21,7 @@ export default function Settings() {
     };
     try {
       await axios.put(
-        "https://blogging-zx1s.onrender.com/api/users/" + user._id,
+        `${process.env.REACT_APP_BACKEND_URL}/api/users/` + user._id,
         updatedUser
       );
       setSuccess(true);

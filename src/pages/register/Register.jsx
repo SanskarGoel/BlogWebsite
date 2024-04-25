@@ -12,7 +12,7 @@ export default function Register() {
     setError(false);
     try {
       const res = await axios.post(
-        "https://blogging-zx1s.onrender.com/api/auth/register",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/register`,
         {
           username, //when we have x: x type of situation then just write x
           email,
