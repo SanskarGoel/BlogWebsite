@@ -1,5 +1,5 @@
 import "./settings.css";
-import Sidebar from "../../components/sidebar/Sidebar";
+// import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 import { useState } from "react";
@@ -11,6 +11,8 @@ export default function Settings() {
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
   const { user } = useContext(Context); //using contextAPI i am directly getting details of currently logged in user
+  const { dispatch, isFetching } = useContext(Context);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedUser = {
@@ -20,10 +22,11 @@ export default function Settings() {
       password,
     };
     try {
-      await axios.put(
+      const res = await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/api/users/` + user._id,
         updatedUser
       );
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       setSuccess(true);
     } catch (err) {}
   };
@@ -76,7 +79,7 @@ export default function Settings() {
           )}
         </form>
       </div>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 }

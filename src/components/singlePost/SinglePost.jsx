@@ -26,7 +26,7 @@ export default function SinglePost() {
       setDesc(res.data.desc);
     };
     getPost();
-  }, [path]); //DOUBT WHY WE WRITE SOMETHING IN BRACKETS like [path]
+  }, [path]); 
   const handleDelete = async () => {
     try {
       await axios.delete(
@@ -38,7 +38,7 @@ export default function SinglePost() {
   };
   const handleUpdate = async () => {
     try {
-      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/posts/` + path, {
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/posts/` + path, {//making http put request to the backend server
         username: user.username,
         title: title,
         desc: desc,
@@ -109,6 +109,7 @@ export default function SinglePost() {
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>
             Update
+            {/* {console.log(user)} */}
           </button>
         )}
       </div>
